@@ -1,0 +1,5 @@
+com/uber/uberApp/entities/enums/Role.class
+com/uber/uberApp/entities/Driver.class
+com/uber/uberApp/UberAppApplication.class
+com/uber/uberApp/entities/User.class
+com/uber/uberApp/entities/Rider.class
