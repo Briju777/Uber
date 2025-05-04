@@ -1,9 +1,7 @@
 package com.uber.uberApp.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.uber.uberApp.entities.enums.RideStatus;
+import jakarta.persistence.*;
 
 @Entity
 public class Ride {
@@ -11,4 +9,6 @@ public class Ride {
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Long id;
 
+    @Enumerated(EnumType.STRING)
+    private RideStatus rideStatus;
 }
