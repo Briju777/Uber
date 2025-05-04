@@ -13,6 +13,9 @@ public class Ride {
     @Column(columnDefinition = "Geometry(Point, 4326")
     private Point pickupLocation;
 
+    @Column(columnDefinition = "Geometry(Point, 4326")
+    private Point dropLocation;
+
     @Enumerated(EnumType.STRING)
     private RideStatus rideStatus;
 }
