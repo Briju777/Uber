@@ -6,7 +6,6 @@ import org.locationtech.jts.geom.Point;
 
 @Entity
 public class Ride {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Long id;
