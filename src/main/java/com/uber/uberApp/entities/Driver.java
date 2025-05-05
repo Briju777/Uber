@@ -30,7 +30,4 @@ public class Driver {
 
     @Column(columnDefinition = "Geometry(Point, 4326")
     Point currentLocation;
-
-
-
 }
