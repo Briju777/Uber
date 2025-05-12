@@ -7,9 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.locationtech.jts.geom.Point;
 
-
-
-
 @Getter
 @Setter
 @AllArgsConstructor
