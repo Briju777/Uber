@@ -19,7 +19,7 @@ public class Driver {
 
 
     private Double rating;
-//  User
+//  User1
     @OneToOne
     @JoinColumn(name ="user_id")
     private User user;
