@@ -1,5 +1,6 @@
 package com.uber.uberApp.services.impl;
 
+import com.uber.uberApp.entities.Driver;
 import com.uber.uberApp.services.DriverService;
 import com.uber.uberApp.dto.DriverDto;
 import com.uber.uberApp.dto.RideDto;
@@ -36,6 +37,11 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public List<RideDto> getAllMyRides() {
+        return null;
+    }
+
+    @Override
+    public Driver getCurrentDriver() {
         return null;
     }
 }
