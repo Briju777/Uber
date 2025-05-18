@@ -15,10 +15,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
+import java.util.function.Consumer;
 
 @Service
 @RequiredArgsConstructor
-public class AuthServiceImpl  implements AuthService {
+public class AuthServiceImpl implements AuthService {
     private final ModelMapper modelMapper;
     private final UserRepository userRepository;
 
@@ -31,11 +32,12 @@ public class AuthServiceImpl  implements AuthService {
 
     @Override
     public UserDto signup(SignupDto signupDto) {
-       userRepository.findByEmail(signupDto.getEmail()).orElseThrow(()->
-                new RuntimeConflictException("Cannot signup, User already exists with email" + signupDto.getEmail()));
+        User user = userRepository.findByEmail(signupDto.getEmail()).orElse(null);
 
+        if (user != null)
+            new RuntimeConflictException("Cannot signup, User already exists with email " + signupDto.getEmail());
 
-        User user = modelMapper.map(signupDto, User.class);
+        user = modelMapper.map(signupDto, User.class);
         user.setRoles(Set.of(Role.RIDER));
         User savedUser = userRepository.save(user);
 
