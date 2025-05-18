@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.locationtech.jts.geom.Point;
 
+
+
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,18 +20,14 @@ public class Driver {
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Long id;
 
-
     private Double rating;
-//  User1
+
     @OneToOne
     @JoinColumn(name ="user_id")
     private User user;
 
     private Boolean available;
 
-    @Column(columnDefinition = "Geometry(Point, 4326")
-    Point currentLocation;
-
-
-
+    @Column(columnDefinition = "Geometry(Point, 4326)")
+    private Point currentLocation;
 }

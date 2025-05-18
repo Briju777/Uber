@@ -1,40 +1,33 @@
-package com.uber.uberApp.entities;
+package com.uber.uberApp.dto;
 
+import com.uber.uberApp.entities.Rider;
 import com.uber.uberApp.entities.enums.PaymentMethod;
 import com.uber.uberApp.entities.enums.RideRequestStatus;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.locationtech.jts.geom.Point;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Getter
-@Setter
-public class RideRequest {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class RideRequestDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(columnDefinition = "Geometry(Point, 4326)")
     private Point pickupLocation;
 
-    @Column(columnDefinition = "Geometry(Point, 4326)")
     private Point dropOffLocation;
 
-    @CreationTimestamp
     private LocalDateTime requestedTime;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Rider rider;
+    private RiderDto rider;
 
-
-    @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
 
-    @Enumerated(EnumType.STRING)
     private RideRequestStatus rideRequestStatus;
 }

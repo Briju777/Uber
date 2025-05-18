@@ -1,40 +1,37 @@
-package com.uber.uberApp.entities;
+package com.uber.uberApp.dto;
 
+import com.uber.uberApp.entities.Driver;
+import com.uber.uberApp.entities.Rider;
 import com.uber.uberApp.entities.enums.PaymentMethod;
-import com.uber.uberApp.entities.enums.RideRequestStatus;
 import com.uber.uberApp.entities.enums.RideStatus;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.locationtech.jts.geom.Point;
 
 import java.time.LocalDateTime;
 
-@Entity
-public class Ride {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class RideDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(columnDefinition = "Geometry(Point, 4326)")
     private Point pickupLocation;
 
-    @Column(columnDefinition = "Geometry(Point, 4326)")
     private Point dropOffLocation;
 
-    @CreationTimestamp
     private LocalDateTime createdTime;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Rider rider;
+    private RiderDto rider;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Driver driver;
+    private DriverDto driver;
 
-    @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
 
-    @Enumerated(EnumType.STRING)
     private RideStatus rideStatus;
 
     private Double fare;
@@ -42,4 +39,5 @@ public class Ride {
     private LocalDateTime startedAt;
 
     private LocalDateTime endedAt;
+
 }
