@@ -1,9 +1,24 @@
 package com.uber.uberApp.repositories;
 
+import com.uber.uberApp.dto.DriverDto;
 import com.uber.uberApp.entities.Driver;
+import org.locationtech.jts.geom.Point;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface DriverRepository extends JpaRepository<Driver, Long> {
+
+    // ST_Distance(point1, point2)
+    // ST_DWithin(point1, 1000)
+    @Query("SELECT D.*, ST_Distance(D.current_location, :pickupLocation) AS DISTANCE " +
+            "FROM DIRVER AS D " +
+            "WHERE AVAILABLE = TRUE AND ST_DWithin(D.current_location, :pickupLocation, 1000) " +
+            "ORDER BY DISTANCE LIMIT 10"
+    )
+    List<DriverDto> findMatchingDrivers(Point pickupLocation);
+
 }
