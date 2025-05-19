@@ -13,6 +13,7 @@ import com.uber.uberApp.services.RiderService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 import java.util.function.Consumer;
@@ -26,11 +27,13 @@ public class AuthServiceImpl implements AuthService {
     private final RiderService riderService;
 
     @Override
+
     public String login(String email, String password) {
         return null;
     }
 
     @Override
+    @Transactional
     public UserDto signup(SignupDto signupDto) {
         User user = userRepository.findByEmail(signupDto.getEmail()).orElse(null);
 
@@ -45,8 +48,7 @@ public class AuthServiceImpl implements AuthService {
         riderService.createNewRider(user);
         // TODO add wallet realted service here
 
-
-        return null;
+       return modelMapper.map(savedUser, UserDto.class);
     }
 
     @Override
