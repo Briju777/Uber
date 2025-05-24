@@ -45,4 +45,7 @@ public class Ride {
     private LocalDateTime startedAt;
 
     private LocalDateTime endedAt;
+
+    private String otp;
 }
+

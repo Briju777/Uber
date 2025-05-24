@@ -25,27 +25,27 @@ public class DriverServiceImpl implements DriverService {
     private final DriverRepository driverRepository;
 
     private final RideService rideService;
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     @Override
     @Transactional
     public RideDto acceptRide(Long rideRequestId) {
         RideRequest rideRequest = rideRequestService.findRideRequestById(rideRequestId);
+
         if (!rideRequest.getRideRequestStatus().equals(RideRequestStatus.PENDING)) {
             throw new RuntimeException("RideRequest cannot be accepted, status is " + rideRequest.getRideRequestStatus());
         }
 
         Driver currentDriver = getCurrentDriver();
-
         if (!currentDriver.getAvailable()) {
             throw new RuntimeException("Driver cannot accept ride due to unavailability");
         }
 
+        currentDriver.setAvailable(false);
+        Driver savedDriver = driverRepository.save(currentDriver);
 
-        Ride ride = rideService.createNewRide(rideRequest, currentDriver);
-
+        Ride ride = rideService.createNewRide(rideRequest, savedDriver);
         return modelMapper.map(ride, RideDto.class);
-
     }
 
     @Override
@@ -80,7 +80,7 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public Driver getCurrentDriver() {
-        return driverRepository.findById(2L).orElseThrow(() -> new ResourceNotFoundException("Driver not fount with Id: " + 2L));
+        return driverRepository.findById(3L).orElseThrow(() -> new ResourceNotFoundException("Driver not fount with Id: " + 3L));
     }
 
 }
