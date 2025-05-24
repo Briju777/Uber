@@ -1,24 +1,27 @@
 package com.uber.uberApp.services.impl;
 
+import com.uber.uberApp.dto.RideRequestDto;
 import com.uber.uberApp.entities.Driver;
 import com.uber.uberApp.entities.Ride;
-import com.uber.uberApp.entities.Rider;
-import com.uber.uberApp.entities.User;
+import com.uber.uberApp.entities.RideRequest;
+import com.uber.uberApp.entities.enums.RideRequestStatus;
 import com.uber.uberApp.entities.enums.RideStatus;
+import com.uber.uberApp.repositories.RideRepository;
+import com.uber.uberApp.services.RideRequestService;
 import com.uber.uberApp.services.RideService;
-import com.uber.uberApp.services.RiderService;
-import com.uber.uberApp.dto.RideDto;
-import com.uber.uberApp.dto.RideRequestDto;
-import com.uber.uberApp.dto.RiderDto;
+import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
+@RequiredArgsConstructor
 public class RideServiceImpl implements RideService {
 
+    private final RideRepository rideRepository;
+    private final RideRequestService rideRequestService;
+    private final ModelMapper modelMapper;
 
     @Override
     public Ride getRideById(Long rideId) {
@@ -31,8 +34,15 @@ public class RideServiceImpl implements RideService {
     }
 
     @Override
-    public Ride createNewRide(RideRequestDto rideRequestDto, Driver driver) {
-        return null;
+    public Ride createNewRide(RideRequest rideRequest, Driver driver) {
+        rideRequest.setRideRequestStatus(RideRequestStatus.CONFIRMED);
+
+        Ride ride = modelMapper.map(rideRequest, Ride.class);
+        ride.setRideStatus(RideStatus.CONFIRMED);
+        ride.setDriver(driver);
+        ride.setId(null);
+        rideRequestService.update(rideRequest);
+        return rideRepository.save(ride);
     }
 
     @Override

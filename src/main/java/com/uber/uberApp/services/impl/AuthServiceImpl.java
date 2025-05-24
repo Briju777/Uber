@@ -1,14 +1,13 @@
 package com.uber.uberApp.services.impl;
 
-import com.uber.uberApp.entities.Rider;
+import com.uber.uberApp.dto.DriverDto;
+import com.uber.uberApp.dto.SignupDto;
+import com.uber.uberApp.dto.UserDto;
 import com.uber.uberApp.entities.User;
 import com.uber.uberApp.entities.enums.Role;
 import com.uber.uberApp.exceptions.RuntimeConflictException;
 import com.uber.uberApp.repositories.UserRepository;
 import com.uber.uberApp.services.AuthService;
-import com.uber.uberApp.dto.DriverDto;
-import com.uber.uberApp.dto.SignupDto;
-import com.uber.uberApp.dto.UserDto;
 import com.uber.uberApp.services.RiderService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
-import java.util.function.Consumer;
 
 @Service
 @RequiredArgsConstructor

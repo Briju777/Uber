@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface DriverService {
 
+    RideDto acceptRide(Long rideRequestId);
     RideDto cancelRide(Long rideId);
 
     RideDto startRide(Long rideId);
@@ -22,6 +23,5 @@ public interface DriverService {
     List<RideDto> getAllMyRides();
 
     Driver getCurrentDriver();
-
 
 }

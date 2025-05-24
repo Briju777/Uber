@@ -4,8 +4,6 @@ package com.uber.uberApp.strategies.impl;
 import com.uber.uberApp.entities.RideRequest;
 import com.uber.uberApp.services.DistanceService;
 import com.uber.uberApp.strategies.RiderFareCalculationStrategy;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

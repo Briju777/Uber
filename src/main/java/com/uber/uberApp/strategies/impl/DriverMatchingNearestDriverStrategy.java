@@ -1,6 +1,5 @@
 package com.uber.uberApp.strategies.impl;
 
-import com.uber.uberApp.dto.DriverDto;
 import com.uber.uberApp.entities.Driver;
 import com.uber.uberApp.entities.RideRequest;
 import com.uber.uberApp.repositories.DriverRepository;

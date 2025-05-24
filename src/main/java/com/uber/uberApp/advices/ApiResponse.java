@@ -1,10 +1,8 @@
 package com.uber.uberApp.advices;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.uber.uberApp.advices.ApiError;
 import lombok.Data;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data

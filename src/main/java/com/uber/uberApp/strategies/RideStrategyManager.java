@@ -7,12 +7,11 @@ import com.uber.uberApp.strategies.impl.RiderFareDefaultFareCalculationStrategy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Component
 @RequiredArgsConstructor
-public class StrategyManager {
+public class RideStrategyManager {
     private final DriverMatchingHighestRatedDriverStrategy highestRatedDriverStrategy;
     private final DriverMatchingNearestDriverStrategy nearestDriverStrategy;
     private final RiderFareDefaultFareCalculationStrategy defaultFareCalculationStrategy;
