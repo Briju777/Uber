@@ -5,6 +5,8 @@ import com.uber.uberApp.dto.RideRequestDto;
 import com.uber.uberApp.dto.RiderDto;
 import com.uber.uberApp.entities.Rider;
 import com.uber.uberApp.entities.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 
@@ -12,13 +14,13 @@ import java.util.List;
 public interface RiderService {
     RideRequestDto requestRide(RideRequestDto rideRequestDto);
 
-    RideRequestDto cancelRide(Long rideId);
+    RideDto cancelRide(Long rideId);
 
     RideDto rateRider(Long rideId, Integer rating);
 
     RiderDto getMyProfile();
 
-    List<RiderDto> getAllMyRides();
+    Page<RideDto> getAllMyRides(PageRequest pageRequest);
 
     Rider createNewRider(User user);
 
