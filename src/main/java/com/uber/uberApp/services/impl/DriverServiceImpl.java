@@ -6,6 +6,7 @@ import com.uber.uberApp.entities.Driver;
 import com.uber.uberApp.entities.Ride;
 import com.uber.uberApp.entities.RideRequest;
 import com.uber.uberApp.entities.enums.RideRequestStatus;
+import com.uber.uberApp.entities.enums.RideStatus;
 import com.uber.uberApp.exceptions.ResourceNotFoundException;
 import com.uber.uberApp.repositories.DriverRepository;
 import com.uber.uberApp.services.DriverService;
@@ -16,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -54,8 +56,23 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public RideDto startRide(Long rideId) {
-        return null;
+    public RideDto startRide(Long rideId, String otp) {
+        Ride ride = rideService.getRideById(rideId);
+        Driver driver = getCurrentDriver();
+
+        if (!driver.equals(ride.getDriver())) {
+            throw new RuntimeException("Driver cannot start a ride as he has not accepted it earlier");
+        }
+
+        if (!ride.getRideStatus().equals(RideStatus.CONFIRMED)) {
+            throw new RuntimeException("Ride status is not CONFIRMED hence cannot be started, status: " + ride.getRideStatus());
+        }
+        if (!otp.equals(ride.getOtp())) {
+            throw new RuntimeException("Otp is not valid otp: " + otp);
+        }
+        ride.setStartedAt(LocalDateTime.now());
+        Ride savedRide = rideService.updateRideStatus(ride, RideStatus.ONGOING);
+        return modelMapper.map(savedRide, RideDto.class);
     }
 
     @Override
