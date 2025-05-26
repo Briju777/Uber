@@ -1,16 +1,14 @@
 package com.uber.uberApp.dto;
 
-import com.uber.uberApp.entities.Ride;
-import com.uber.uberApp.entities.Wallet;
 import com.uber.uberApp.entities.enums.TransactionMethod;
 import com.uber.uberApp.entities.enums.TransactionType;
-import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
 @Data
+@Builder
 public class WalletTransactionDto {
 
     private long id;

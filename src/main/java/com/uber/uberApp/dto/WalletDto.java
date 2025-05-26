@@ -2,12 +2,13 @@ package com.uber.uberApp.dto;
 
 import com.uber.uberApp.entities.User;
 import com.uber.uberApp.entities.WalletTransaction;
-import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
+@Builder
 public class WalletDto {
     private long id;
 

@@ -6,8 +6,6 @@ import com.uber.uberApp.entities.Driver;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
-import java.util.List;
-
 
 public interface DriverService {
 

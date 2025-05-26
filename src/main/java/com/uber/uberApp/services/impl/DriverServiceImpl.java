@@ -10,6 +10,7 @@ import com.uber.uberApp.entities.enums.RideStatus;
 import com.uber.uberApp.exceptions.ResourceNotFoundException;
 import com.uber.uberApp.repositories.DriverRepository;
 import com.uber.uberApp.services.DriverService;
+import com.uber.uberApp.services.PaymentService;
 import com.uber.uberApp.services.RideRequestService;
 import com.uber.uberApp.services.RideService;
 import jakarta.transaction.Transactional;
@@ -19,9 +20,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -31,6 +30,8 @@ public class DriverServiceImpl implements DriverService {
 
     private final RideService rideService;
     private final ModelMapper modelMapper;
+
+    private final PaymentService paymentService;
 
     @Override
     @Transactional
