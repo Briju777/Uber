@@ -84,7 +84,7 @@ public class WalletServiceImpl implements WalletService {
 
     @Override
     public Wallet findByUser(User user) {
-        return walletRepository.finByUser(user)
+        return walletRepository.findByUser(user)
                 .orElseThrow(() -> new ResourceNotFoundException("Wallet not found for user with id:" + user.getId()));
     }
 

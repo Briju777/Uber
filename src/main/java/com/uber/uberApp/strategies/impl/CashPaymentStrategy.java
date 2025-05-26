@@ -4,6 +4,7 @@ import com.uber.uberApp.entities.Driver;
 import com.uber.uberApp.entities.Payment;
 import com.uber.uberApp.entities.enums.PaymentStatus;
 import com.uber.uberApp.entities.enums.TransactionMethod;
+import com.uber.uberApp.repositories.PaymentRepository;
 import com.uber.uberApp.services.PaymentService;
 import com.uber.uberApp.services.WalletService;
 import com.uber.uberApp.strategies.PaymentStrategy;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CashPaymentStrategy implements PaymentStrategy {
     private final WalletService walletService;
-    private final PaymentService paymentService;
+    private final PaymentRepository paymentRepository;
     @Override
     public void processPayment(Payment payment) {
         Driver driver = payment.getRide().getDriver();
@@ -24,7 +25,7 @@ public class CashPaymentStrategy implements PaymentStrategy {
         walletService.deductMoneyFromWallet(driver.getUser(), platformCommission, null,
                 payment.getRide(), TransactionMethod.RIDE);
 
-        paymentService.updatePaymentMethod(payment, PaymentStatus.CONFIRMED);
-
+        payment.setPaymentStatus(PaymentStatus.CONFIRMED);
+        paymentRepository.save(payment);
     }
 }

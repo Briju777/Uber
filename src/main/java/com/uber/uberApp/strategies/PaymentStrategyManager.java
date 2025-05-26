@@ -1,8 +1,8 @@
 package com.uber.uberApp.strategies;
 
 import com.uber.uberApp.entities.enums.PaymentMethod;
-import com.uber.uberApp.services.impl.WalletPaymentStrategy;
 import com.uber.uberApp.strategies.impl.CashPaymentStrategy;
+import com.uber.uberApp.strategies.impl.WalletPaymentStrategy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

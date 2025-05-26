@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface WalletRepository extends JpaRepository<Wallet, Long> {
-    Optional<Wallet>  finByUser(User user);
+    Optional<Wallet>  findByUser(User user);
 }
