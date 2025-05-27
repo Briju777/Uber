@@ -9,10 +9,7 @@ import com.uber.uberApp.entities.enums.RideRequestStatus;
 import com.uber.uberApp.entities.enums.RideStatus;
 import com.uber.uberApp.exceptions.ResourceNotFoundException;
 import com.uber.uberApp.repositories.DriverRepository;
-import com.uber.uberApp.services.DriverService;
-import com.uber.uberApp.services.PaymentService;
-import com.uber.uberApp.services.RideRequestService;
-import com.uber.uberApp.services.RideService;
+import com.uber.uberApp.services.*;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -30,8 +27,9 @@ public class DriverServiceImpl implements DriverService {
 
     private final RideService rideService;
     private final ModelMapper modelMapper;
-
     private final PaymentService paymentService;
+
+    private final RatingService ratingService;
 
     @Override
     @Transactional
@@ -115,7 +113,19 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public RideDto rateRider(Long rideId, Integer rating) {
-        return null;
+        Ride ride = rideService.getRideById(rideId);
+        Driver driver = getCurrentDriver();
+
+        if (!driver.equals(ride.getDriver())) {
+            throw new RuntimeException("Driver is not owner of this Ride");
+        }
+
+        if (!ride.getRideStatus().equals(RideStatus.ENDED)) {
+            throw new RuntimeException("Ride status is not ENDED hence cannot be start rating, status: " + ride.getRideStatus());
+        }
+
+        return ratingService.rateRider(ride, rating);
+
     }
 
     @Override
