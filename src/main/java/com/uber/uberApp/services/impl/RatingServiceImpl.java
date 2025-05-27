@@ -2,7 +2,6 @@ package com.uber.uberApp.services.impl;
 
 import com.uber.uberApp.dto.DriverDto;
 import com.uber.uberApp.dto.RideDto;
-import com.uber.uberApp.dto.RiderDto;
 import com.uber.uberApp.entities.Driver;
 import com.uber.uberApp.entities.Rating;
 import com.uber.uberApp.entities.Ride;
