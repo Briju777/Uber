@@ -13,6 +13,9 @@ import org.locationtech.jts.geom.Point;
 @NoArgsConstructor
 @Entity
 @Builder
+@Table(indexes = {
+        @Index(name ="idx_vechileId", columnList ="vechileId" )
+})
 public class Driver {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )

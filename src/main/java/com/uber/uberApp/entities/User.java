@@ -17,7 +17,11 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name ="app_user")
+@Table(name ="app_user",
+indexes = {
+        @Index(name="idx_email", columnList = "email")
+})
+
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
