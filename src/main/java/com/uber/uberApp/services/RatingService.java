@@ -6,7 +6,9 @@ import com.uber.uberApp.entities.Ride;
 
 public interface RatingService {
     DriverDto rateDriver(Ride ride, Integer rating);
+
     RideDto rateRider(Ride ride, Integer rating);
+
     void createNewRating(Ride ride);
 
 }

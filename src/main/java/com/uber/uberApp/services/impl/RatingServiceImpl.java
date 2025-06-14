@@ -26,10 +26,12 @@ public class RatingServiceImpl implements RatingService {
 
     @Override
     public DriverDto rateDriver(Ride ride, Integer rating) {
-        Driver driver =ride.getDriver();
+        Driver driver = ride.getDriver();
         Rating ratingObj = ratingRepository.findByRide(ride)
                 .orElseThrow(() -> new ResourceNotFoundException("Rating not found for ride with id: " + ride.getId()));
 
+        if (ratingObj.getDriverRating() != null)
+            throw new RuntimeException("Driver has already been rated, cannot rate again");
         ratingObj.setDriverRating(rating);
         ratingRepository.save(ratingObj);
         Double newRating = ratingRepository.findByDriver(driver)
@@ -50,6 +52,8 @@ public class RatingServiceImpl implements RatingService {
         Rating ratingObj = ratingRepository.findByRide(ride)
                 .orElseThrow(() -> new ResourceNotFoundException("Rating not found for ride with id: " + ride.getId()));
 
+        if (ratingObj.getRiderRating() != null)
+            throw new RuntimeException("Driver has already been rated, cannot rate again");
         ratingObj.setRiderRating(rating);
         ratingRepository.save(ratingObj);
         Double newRating = ratingRepository.findByRider(rider)

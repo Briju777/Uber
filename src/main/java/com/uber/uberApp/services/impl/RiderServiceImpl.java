@@ -66,10 +66,10 @@ public class RiderServiceImpl implements RiderService {
         Rider rider = getCurrentRider();
 
         if (!rider.equals(ride.getRider())) {
-            throw new RuntimeException("Rider doest not own this ride with id: "+ rideId);
+            throw new RuntimeException("Rider doest not own this ride with id: " + rideId);
         }
-        if(ride.getRideStatus().equals(RideStatus.CONFIRMED)){
-            throw new RuntimeException("Ride cannot be cancelled, invalid status: "+ ride.getRideStatus());
+        if (ride.getRideStatus().equals(RideStatus.CONFIRMED)) {
+            throw new RuntimeException("Ride cannot be cancelled, invalid status: " + ride.getRideStatus());
         }
 
         Ride savedRide = rideService.updateRideStatus(ride, RideStatus.CANCELLED);

@@ -27,7 +27,7 @@ public class WalletServiceImpl implements WalletService {
     @Transactional
     public Wallet addMoneyToWallet(User user, Double amount, String transactionId, Ride ride, TransactionMethod transactionMethod) {
         Wallet wallet = findByUser(user);
-        wallet.setBalance(wallet.getBalance()+amount);
+        wallet.setBalance(wallet.getBalance() + amount);
 
         WalletTransaction walletTransaction = WalletTransaction.builder()
                 .transactionId(transactionId)

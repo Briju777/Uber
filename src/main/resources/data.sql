@@ -48,30 +48,30 @@ INSERT INTO user_roles(user_id, roles) VALUES
 
 
 
-INSERT INTO rider (id, user_id, rating) values (1,1,4.9);
+INSERT INTO rider (user_id, rating) values (1,4.9);
 
 
-INSERT INTO driver(id, user_id, rating, available, current_location) VALUES
-(3, 4, 4.2, true, ST_GeomFromText('POINT(73.1914 22.2939)', 4326)),    -- Laxmi Vilas Palace
-(4, 5, 3.9, false, ST_GeomFromText('POINT(73.1887 22.3120)', 4326)),   -- Sardar Patel Planetarium
-(5, 6, 4.8, true, ST_GeomFromText('POINT(73.1880 22.3020)', 4326)),    -- Chimnabai Clock Tower
-(6, 7, 4.0, true, ST_GeomFromText('POINT(73.19766 22.29575)', 4326)),  -- Kirti Stambh
-(7, 8, 4.5, false, ST_GeomFromText('POINT(73.1887 22.3120)', 4326)),   -- Kala Bhavan
-(8, 9, 4.1, true, ST_GeomFromText('POINT(73.1880 22.3060)', 4326)),    -- Khanderao Market
-(9, 10, 4.6, false, ST_GeomFromText('POINT(73.1880 22.3080)', 4326)),  -- Nyay Mandir
-(10, 11, 3.8, true, ST_GeomFromText('POINT(73.1880 22.3070)', 4326)),  -- Hazira Maqbara
-(11, 12, 4.4, false, ST_GeomFromText('POINT(73.1914 22.2939)', 4326)),
-(12, 13, 4.9, true, ST_GeomFromText('POINT(73.1887 22.3120)', 4326)),
-(13, 14, 4.0, true, ST_GeomFromText('POINT(73.1880 22.3020)', 4326)),
-(14, 15, 4.3, false, ST_GeomFromText('POINT(73.19766 22.29575)', 4326)),
-(15, 16, 3.7, true, ST_GeomFromText('POINT(73.1887 22.3120)', 4326)),
-(16, 17, 4.2, true, ST_GeomFromText('POINT(73.1880 22.3060)', 4326)),
-(17, 18, 4.7, false, ST_GeomFromText('POINT(73.1880 22.3080)', 4326)),
-(18, 19, 3.9, true, ST_GeomFromText('POINT(73.1880 22.3070)', 4326)),
-(19, 20, 4.8, false, ST_GeomFromText('POINT(73.1914 22.2939)', 4326)),
-(20, 21, 4.6, true, ST_GeomFromText('POINT(73.1887 22.3120)', 4326));
+INSERT INTO driver(user_id, rating, available, current_location) VALUES
+(4, 4.2, true, ST_GeomFromText('POINT(73.1914 22.2939)', 4326)),    -- Laxmi Vilas Palace
+(5, 3.9, false, ST_GeomFromText('POINT(73.1887 22.3120)', 4326)),   -- Sardar Patel Planetarium
+(6, 4.8, true, ST_GeomFromText('POINT(73.1880 22.3020)', 4326)),    -- Chimnabai Clock Tower
+(7, 4.0, true, ST_GeomFromText('POINT(73.19766 22.29575)', 4326)),  -- Kirti Stambh
+(8, 4.5, false, ST_GeomFromText('POINT(73.1887 22.3120)', 4326)),   -- Kala Bhavan
+(9, 4.1, true, ST_GeomFromText('POINT(73.1880 22.3060)', 4326)),    -- Khanderao Market
+(10, 4.6, false, ST_GeomFromText('POINT(73.1880 22.3080)', 4326)),  -- Nyay Mandir
+(11, 3.8, true, ST_GeomFromText('POINT(73.1880 22.3070)', 4326)),  -- Hazira Maqbara
+(12, 4.4, false, ST_GeomFromText('POINT(73.1914 22.2939)', 4326)),
+(13, 4.9, true, ST_GeomFromText('POINT(73.1887 22.3120)', 4326)),
+(14, 4.0, true, ST_GeomFromText('POINT(73.1880 22.3020)', 4326)),
+(15, 4.3, false, ST_GeomFromText('POINT(73.19766 22.29575)', 4326)),
+(16, 3.7, true, ST_GeomFromText('POINT(73.1887 22.3120)', 4326)),
+(17, 4.2, true, ST_GeomFromText('POINT(73.1880 22.3060)', 4326)),
+(18, 4.7, false, ST_GeomFromText('POINT(73.1880 22.3080)', 4326)),
+(19, 3.9, true, ST_GeomFromText('POINT(73.1880 22.3070)', 4326)),
+(20, 4.8, false, ST_GeomFromText('POINT(73.1914 22.2939)', 4326)),
+(21, 4.6, true, ST_GeomFromText('POINT(73.1887 22.3120)', 4326));
 
 
-INSERT INTO wallet (id, user_id, balance) VALUES
-(1, 1, 100),
-(2, 2, 500);
+INSERT INTO wallet (user_id, balance) VALUES
+(1, 100),
+(2, 500);

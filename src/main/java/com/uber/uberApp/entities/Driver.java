@@ -5,8 +5,6 @@ import lombok.*;
 import org.locationtech.jts.geom.Point;
 
 
-
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -14,17 +12,17 @@ import org.locationtech.jts.geom.Point;
 @Entity
 @Builder
 @Table(indexes = {
-        @Index(name ="idx_vechileId", columnList ="vechileId" )
+        @Index(name = "idx_vechileId", columnList = "vechileId")
 })
 public class Driver {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Double rating;
 
     @OneToOne
-    @JoinColumn(name ="user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     private Boolean available;

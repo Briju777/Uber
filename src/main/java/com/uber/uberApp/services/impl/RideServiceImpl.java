@@ -29,7 +29,7 @@ public class RideServiceImpl implements RideService {
 
     @Override
     public Ride getRideById(Long rideId) {
-        return rideRepository.findById(rideId).orElseThrow(()-> new ResourceNotFoundException("Ride not found with rideId: "+rideId));
+        return rideRepository.findById(rideId).orElseThrow(() -> new ResourceNotFoundException("Ride not found with rideId: " + rideId));
     }
 
     @Override
@@ -53,8 +53,8 @@ public class RideServiceImpl implements RideService {
 
     @Override
     public Ride updateRideStatus(Ride ride, RideStatus rideStatus) {
-       ride.setRideStatus((rideStatus));
-       return rideRepository.save(ride);
+        ride.setRideStatus((rideStatus));
+        return rideRepository.save(ride);
     }
 
     @Override
@@ -67,7 +67,7 @@ public class RideServiceImpl implements RideService {
         return rideRepository.findByDriver(driver, pageRequest);
     }
 
-    private String generateOtp(){
+    private String generateOtp() {
         Random random = new Random();
         random.nextInt(10000); // 0 to 9999
         int otpInt = random.nextInt(10000);

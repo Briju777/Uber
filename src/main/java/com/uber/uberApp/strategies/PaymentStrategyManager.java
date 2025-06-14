@@ -14,7 +14,7 @@ public class PaymentStrategyManager {
     private final CashPaymentStrategy cashPaymentStrategy;
 
     public PaymentStrategy paymentStrategy(PaymentMethod paymentMethod) {
-        return switch (paymentMethod){
+        return switch (paymentMethod) {
             case WALLET -> walletPaymentStrategy;
             case CASH -> cashPaymentStrategy;
         };

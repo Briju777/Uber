@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 public interface DriverService {
 
     RideDto acceptRide(Long rideRequestId);
+
     RideDto cancelRide(Long rideId);
 
     RideDto startRide(Long rideId, String otp);
@@ -25,5 +26,6 @@ public interface DriverService {
     Driver getCurrentDriver();
 
     Driver updateDriverAvailability(Driver driver, boolean available);
+
     Driver createNewDriver(Driver driver);
 }
