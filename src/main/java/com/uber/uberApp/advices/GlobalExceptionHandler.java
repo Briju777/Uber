@@ -22,7 +22,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiResponse<?>> handleResourceNotFound(ResourceNotFoundException exception) {
         ApiError apiError = ApiError.builder()
                 .status(HttpStatus.NOT_FOUND)
-                .message("Resource Not Found")
+                .message(exception.getMessage())
                 .build();
         // return new ResponseEntity<>(apiError, HttpStatus.NOT_FOUND);
 
